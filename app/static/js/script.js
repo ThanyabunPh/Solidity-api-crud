@@ -190,10 +190,16 @@ searchData = () => {
                 title: 'No data found',
             })
         } else {
-            tbody.innerHTML = '';
-            List.forEach((item) => {
-                tbody.appendChild(item);
-            });
+            toast2().fire({
+                icon: 'success',
+                title: 'Found ' + List.length + ' data',
+            }).then(() => {
+                tbody.innerHTML = '';
+                List.forEach((item) => {
+                    tbody.appendChild(item);
+                });
+            })
+
         }
     }
 
@@ -213,4 +219,20 @@ toast = () => {
     })
 
     return Toast;
+}
+
+toast2 = () => {
+    const Toast_2 = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        iconColor: 'white',
+        customClass: {
+            popup: 'colored-toast'
+        },
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true
+    })
+
+    return Toast_2;
 }
