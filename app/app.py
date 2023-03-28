@@ -21,7 +21,7 @@ def get_by_id(id):
 @app.route('/getall/', methods=['GET'])
 def get():
     data = Contract_method.get_all()
-    return jsonify({'data': data})
+    return jsonify({"result": "success", 'data': data})
 
 
 @app.route('/insert/', methods=['POST'])
@@ -35,14 +35,14 @@ def insert():
 def delete():
     obj = request.get_json()
     tx = Contract_method.delete(obj['id'])
-    return jsonify({'tx': tx.hex()})
+    return jsonify({"result": "success", 'tx': tx.hex()})
 
 
 @app.route('/update/', methods=['PUT'])
 def update():
     obj = request.get_json()
-    tx = Contract_method.update(obj['id'], obj['name'], obj['surname'], obj['GPAX'])
-    return jsonify({'tx': tx.hex()})
+    tx = Contract_method.update(int(obj['id']), obj['name'], obj['surname'], int(obj['GPAX']))
+    return jsonify({"result": "success", 'tx': tx.hex()})
 
 
 if __name__ == '__main__':
