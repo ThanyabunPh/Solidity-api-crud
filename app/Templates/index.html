@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <link href="{{ url_for ('static', filename='css/css.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for ('static', filename='css/css.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ url_for ('static', filename='./js/script.js')}}"></script>
     <title>Student Data</title>
     <!-- Bootstrap 5 CSS -->
@@ -25,13 +25,17 @@
         <thead>
         <tr>
             <td></td>
-            <td class="text-center"><input class="form-control" id="name" type="text" placeholder="First Name"></td>
-            <td class="text-center"><input class="form-control" id="surname" type="text" placeholder="Last Name"></td>
-            <td class="text-center"><input class="form-control" id="GPAX" type="text" placeholder="Gpax : 4.00"></td>
-            <td class="text-center">
+            <td class="text-center"><input class="form-control" id="name" placeholder="First Name" type="text"></td>
+            <td class="text-center"><input class="form-control" id="surname" placeholder="Last Name" type="text"></td>
+            <td class="text-center"><input class="form-control" id="GPAX" placeholder="Gpax : 4.00" type="text"></td>
+            <td class="text-center d-flex">
                 <a class="btn btn-outline-success" onclick="AddData()">
                     <img height="25" src="https://cdn-icons-png.flaticon.com/512/1828/1828926.png"></a>
+                <a class="btn btn-outline-success" onclick="searchData()">
+                    <img height="25" src="https://cdn-icons-png.flaticon.com/512/151/151773.png">
+                </a>
             </td>
+
         </tr>
         <tr>
             <th class="text-center col-1">ID</th>
@@ -43,7 +47,7 @@
         </tr>
 
         </thead>
-        <tbody>
+        <tbody id="myTable">
         {% for obj in data %}
         <tr>
             <td class="text-center col-1">{{ obj.id }}</td>
@@ -52,9 +56,10 @@
             <td class="text-center col-2">{{ obj.GPAX }}</td>
             <td class="text-center col-1">{{ obj.flag }}</td>
             <td class="text-center col-2">
-                <a class="btn btn-outline-info" onclick="editData()"><img
+                <a class="btn btn-outline-info" onclick="editData({{ obj.id }})"><img
                         height="25" src="https://cdn-icons-png.flaticon.com/512/181/181540.png"></a>
-                <a class="btn btn-danger text-center" onclick="deleteData()"><img
+
+                <a class="btn btn-danger text-center" onclick="deleteData({{ obj.id }})"><img
                         height="25" src="https://cdn-icons-png.flaticon.com/512/565/565491.png"></a>
             </td>
         </tr>
