@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="{{ url_for ('static', filename='css/css.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ url_for ('static', filename='./js/script.js')}}"></script>
+    <title>Student Data</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img alt="" class="d-inline-block align-top" height="30"
+                 src="https://cdn-icons-png.flaticon.com/512/3039/3039367.png" width="30">
+            Bootstrap
+        </a>
+    </nav>
+
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Student Data</h2>
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <td></td>
+            <td class="text-center"><input class="form-control" id="name" type="text" placeholder="First Name"></td>
+            <td class="text-center"><input class="form-control" id="surname" type="text" placeholder="Last Name"></td>
+            <td class="text-center"><input class="form-control" id="GPAX" type="text" placeholder="Gpax : 4.00"></td>
+            <td class="text-center">
+                <a class="btn btn-outline-success" onclick="AddData()">
+                    <img height="25" src="https://cdn-icons-png.flaticon.com/512/1828/1828926.png"></a>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-center col-1">ID</th>
+            <th class="text-center col-3">Name</th>
+            <th class="text-center col-3">Surname</th>
+            <th class="text-center col-2">GPAX</th>
+            <th class="text-center col-1">Flag</th>
+            <th class="text-center col-2">Manage</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        {% for obj in data %}
+        <tr>
+            <td class="text-center col-1">{{ obj.id }}</td>
+            <td class="text-center col-3">{{ obj.name }}</td>
+            <td class="text-center col-3">{{ obj.surname }}</td>
+            <td class="text-center col-2">{{ obj.GPAX }}</td>
+            <td class="text-center col-1">{{ obj.flag }}</td>
+            <td class="text-center col-2">
+                <a class="btn btn-outline-info" onclick="editData()"><img
+                        height="25" src="https://cdn-icons-png.flaticon.com/512/181/181540.png"></a>
+                <a class="btn btn-danger text-center" onclick="deleteData()"><img
+                        height="25" src="https://cdn-icons-png.flaticon.com/512/565/565491.png"></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Bootstrap 5 JS (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
